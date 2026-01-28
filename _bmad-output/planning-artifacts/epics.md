@@ -1,6 +1,12 @@
 ---
-stepsCompleted: [1, 2]
+stepsCompleted: [1, 2, 3, 4]
 inputDocuments: ['prd.md', 'architecture.md']
+workflowType: 'epics-and-stories'
+project_name: 'bmad-windsurf'
+user_name: 'heschoon'
+date: '2026-01-28T14:38:00.000Z'
+status: 'complete'
+completedAt: '2026-01-28T14:38:00.000Z'
 ---
 
 # bmad-windsurf - Epic Breakdown
