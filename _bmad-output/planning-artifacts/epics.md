@@ -1,12 +1,12 @@
 ---
-stepsCompleted: [1, 2, 3, 4]
-inputDocuments: ['prd.md', 'architecture.md']
-workflowType: 'epics-and-stories'
+stepsCompleted: ['step-01-validate-prerequisites', 'step-02-design-epics']
+inputDocuments: ['prd.md', 'architecture.md', 'ux-design-specification.md']
+workflowType: 'epics-and-stories-restructure'
 project_name: 'bmad-windsurf'
 user_name: 'heschoon'
-date: '2026-01-28T14:38:00.000Z'
-status: 'complete'
-completedAt: '2026-01-28T14:38:00.000Z'
+date: '2026-03-12T13:52:00.000Z'
+status: 'in-progress'
+restructureReason: 'Critical epic structure issues identified in implementation readiness report - addressing technical infrastructure epic violations and forward dependencies'
 ---
 
 # bmad-windsurf - Epic Breakdown
@@ -59,360 +59,235 @@ NFR7: System can recover gracefully from unexpected errors without losing game s
 - Use Phaser input plugins for cross-platform compatibility
 - Apply simple instantiation pattern for object lifecycle management
 - Follow naming conventions: PascalCase (classes), camelCase (instances), kebab-case (files)
+- Responsive design with adaptive layout for desktop and mobile
+- Cross-platform input abstraction layer for keyboard and touch controls
+- Self-contained polygon graphics using Canvas 2D API (no external assets)
+- Performance optimization with efficient collision detection and object pooling
+- Accessibility compliance with WCAG AA standards
+- Instant playability with zero-friction gameplay experience
+- Visual feedback system for all user interactions
 
 ### FR Coverage Map
 
-- **Gameplay Mechanics (FR1-FR5):** Covered by Core Gameplay Epic
-- **Level Interaction (FR6-FR10):** Covered by Level Management Epic  
-- **Input Handling (FR11-FR14):** Covered by Input System Epic
-- **Game State Management (FR15-FR17):** Covered by Game State Management Epic
-- **Visual Experience (FR18-FR20):** Covered by Rendering System Epic
+FR1: Epic 1 - Character movement left and right
+FR2: Epic 1 - Jump mechanics with gravity physics  
+FR3: Epic 1 - Responsive acceleration/deceleration
+FR4: Epic 1 - Collision detection with level geometry
+FR5: Epic 1 - Gravity physics application
+FR6: Epic 2 - Start level from designated spawn point
+FR7: Epic 2 - Reach castle endpoint to complete level
+FR8: Epic 2 - Fall detection off screen boundaries
+FR9: Epic 2 - Respawn at start point after falling
+FR10: Epic 2 - Visual feedback for level completion
+FR11: Epic 1 - Keyboard arrow keys and spacebar controls
+FR12: Epic 3 - Touch-based virtual controls
+FR13: Epic 3 - Input device detection and appropriate controls
+FR14: Epic 1 - Immediate visual feedback for player inputs
+FR15: Epic 4 - Game phases management (menu, playing, completed)
+FR16: Epic 4 - Player position tracking within game world
+FR17: Epic 4 - Instant game restart functionality
+FR18: Epic 4 - Polygon graphics rendering
+FR19: Epic 3 - Display adaptation to different screen sizes
+FR20: Epic 3 - Consistent gameplay experience across platforms
 
 ## Epic List
 
-**Epic 1: Project Setup and Core Infrastructure**
-- Goal: Establish the development environment and core game engine foundation
-- Stories: Project initialization, ECS framework, basic game loop
+### Epic 1: Instant Character Control
+Users can immediately start playing with responsive character movement, jumping, and physics that feel natural and intuitive.
+**FRs covered:** FR1, FR2, FR3, FR4, FR5, FR11, FR14
 
-**Epic 2: Core Gameplay Mechanics**
-- Goal: Implement fundamental player movement and physics systems
-- Stories: Character movement, jumping mechanics, collision detection, gravity simulation
+### Epic 2: Complete Level Navigation  
+Users can navigate a complete level from spawn point to castle endpoint, overcoming obstacles and handling failures gracefully.
+**FRs covered:** FR6, FR7, FR8, FR9, FR10
 
-**Epic 3: Level Management**
-- Goal: Create the playable level with start point, obstacles, and completion conditions
-- Stories: Level initialization, platform creation, castle endpoint, fall detection, respawn system
+### Epic 3: Cross-Platform Play
+Users can play seamlessly on both desktop (keyboard) and mobile (touch) with consistent gameplay experience across all devices.
+**FRs covered:** FR12, FR13, FR19, FR20
 
-**Epic 4: Input System**
-- Goal: Implement cross-platform input handling for desktop and mobile
-- Stories: Keyboard controls, touch controls, input device detection, visual feedback
+### Epic 4: Complete Game Experience
+Users experience a polished game with proper state management, visual feedback, and instant restart functionality for a professional gaming experience.
+**FRs covered:** FR15, FR16, FR17, FR18
 
-**Epic 5: Game State Management**
-- Goal: Manage game phases and overall game flow
-- Stories: State machine implementation, game phases, position tracking, restart functionality
+## Epic 1: Instant Character Control
 
-**Epic 6: Rendering System**
-- Goal: Create visual output using polygon graphics with responsive design
-- Stories: Polygon rendering, responsive design, cross-platform consistency
+**Goal:** Users can immediately start playing with responsive character movement, jumping, and physics that feel natural and intuitive.
 
-## Epic 1: Project Setup and Core Infrastructure
+### Story 1.1: Quick Game Start with Character Movement
 
-**Goal:** Establish the development environment and core game engine foundation
-
-### Story 1.1: Initialize Project with Starter Template
-
-**As a** developer,
-**I want to** set up the project using the Phaser + Vite + TypeScript template,
-**So that** I have a working development environment with all necessary dependencies installed.
+As a player,
+I want to immediately start playing with a character that moves left and right when I press keys,
+So that I can experience instant playability without any setup delays.
 
 **Acceptance Criteria:**
 
-**Given** I have the starter template URL
-**When** I execute the clone command and install dependencies
-**Then** the project structure is created with all necessary files
-**And** the development server starts successfully on localhost:8080
+**Given** the game loads in the browser
+**When** I press the left or right arrow keys
+**Then** the character moves smoothly in the corresponding direction
+**And** the movement feels responsive with proper acceleration/deceleration
+**And** the game starts immediately without any loading screens or setup
 
-### Story 1.2: Implement ECS Framework Foundation
+### Story 1.2: Responsive Jump Mechanics with Physics
 
-**As a** developer,
-**I want to** create the core Entity-Component-System framework,
-**So that** I have a scalable architecture for game objects.
-
-**Acceptance Criteria:**
-
-**Given** the ECS architecture requirements
-**When** I implement the base Entity class and ECS manager
-**Then** I can create entities, add components, and register systems
-**And** the ECS manager coordinates component-system interactions each frame
-
-### Story 1.3: Establish Game Loop and Scene Management
-
-**As a** developer,
-**I want to** set up the core game loop with single scene management,
-**So that** I have the foundation for game execution.
+As a player,
+I want to make my character jump with realistic gravity physics when I press the spacebar,
+So that I can overcome obstacles and reach higher platforms with natural-feeling movement.
 
 **Acceptance Criteria:**
 
-**Given** the single scene architecture decision
-**When** I implement the GameScene class and main game loop
-**Then** the game runs at 60fps with proper frame timing
-**And** the scene can transition between game states through the state machine
-
-## Epic 2: Core Gameplay Mechanics
-
-**Goal:** Implement fundamental player movement and physics systems
-
-### Story 2.1: Implement Character Movement System
-
-**As a** player,
-**I want to** control character movement left and right with responsive controls,
-**So that** I can navigate the game world effectively.
-
-**Acceptance Criteria:**
-
-**Given** keyboard or touch input is detected
-**When** I press left/right movement keys or touch controls
-**Then** the character moves smoothly with acceleration/deceleration
-**And** movement feels responsive and immediate
-
-### Story 2.2: Implement Jump Mechanics
-
-**As a** player,
-**I want to** make the character jump with gravity-based physics,
-**So that** I can overcome obstacles and reach higher platforms.
-
-**Acceptance Criteria:**
-
-**Given** the jump input is detected
-**When** I press the jump button or key
+**Given** the character is moving on the ground
+**When** I press the spacebar
 **Then** the character jumps with realistic gravity physics
-**And** the jump height and duration feel natural
+**And** the jump height and duration feel natural and predictable
+**And** the character falls back to the ground smoothly
 
-### Story 2.3: Implement Physics Engine
+### Story 1.3: Natural Movement with Collision Detection
 
-**As a** developer,
-**I want to** create a physics engine with collision detection,
-**So that** game objects interact realistically with the environment.
-
-**Acceptance Criteria:**
-
-**Given** the physics engine is implemented
-**When** the character moves or jumps
-**Then** collisions with platforms are detected accurately
-**And** physics calculations update at fixed timestep for consistency
-
-### Story 2.4: Implement Velocity and Position Components
-
-**As a** developer,
-**I want to** create PositionComponent and VelocityComponent for ECS,
-**So that** character movement data is properly structured and managed.
+As a player,
+I want my character to collide realistically with level geometry and receive immediate visual feedback,
+So that my movements feel grounded and responsive in the game world.
 
 **Acceptance Criteria:**
 
-**Given** the ECS framework is established
-**When** I add PositionComponent and VelocityComponent to entities
-**Then** position and velocity data is stored separately from logic
-**And** components can be queried by systems for game logic
+**Given** the character is moving or jumping in the game world
+**When** the character encounters level geometry or boundaries
+**Then** collision is detected accurately and movement stops appropriately
+**And** I see immediate visual feedback confirming the collision
+**And** the character cannot pass through solid obstacles
 
-## Epic 3: Level Management
+## Epic 2: Complete Level Navigation
 
-**Goal:** Create the playable level with start point, obstacles, and completion conditions
+**Goal:** Users can navigate a complete level from spawn point to castle endpoint, overcoming obstacles and handling failures gracefully.
 
-### Story 3.1: Create Level Initialization System
+### Story 2.1: Level Start with Clear Goal
 
-**As a** developer,
-**I want** to initialize the game level with spawn point and castle endpoint,
-**So that** players have a clear starting position and goal.
-
-**Acceptance Criteria:**
-
-**Given** the level design requirements
-**When** the game starts or restarts
-**Then** the player spawns at the designated start point
-**And** the castle endpoint is clearly visible and reachable
-
-### Story 3.2: Implement Platform Creation System
-
-**As a** developer,
-**I want** to create platforms that form the level layout,
-**So that** players have surfaces to jump on and navigate.
+As a player,
+I want to start at a clear spawn point and see the castle endpoint,
+So that I understand where to begin and what my goal is in the level.
 
 **Acceptance Criteria:**
 
-**Given** the level design specifications
-**When** platforms are created in the game world
-**Then** they have proper collision detection
-**And** they support the character's movement and jumping mechanics
+**Given** the game starts or restarts
+**When** the level loads
+**Then** the character spawns at the designated starting point
+**And** the castle endpoint is clearly visible and recognizable
+**And** I can see the path I need to navigate to reach the goal
 
-### Story 3.3: Implement Castle Endpoint System
+### Story 2.2: Fall Detection and Instant Respawn
 
-**As a** player,
-**I want** to reach the castle endpoint to complete the level,
-**So that** I have a clear victory condition and sense of accomplishment.
-
-**Acceptance Criteria:**
-
-**Given** the castle is positioned at the level end
-**When** the player character touches the castle
-**Then** the level completion is detected
-**And** visual feedback is provided for successful completion
-
-### Story 3.4: Implement Fall Detection System
-
-**As a** player,
-**I want** the system to detect when I fall off the screen,
-**So that** I can respawn and try again without frustration.
+As a player,
+I want to instantly respawn at the start point when I fall off the screen,
+So that I can quickly retry without frustration or losing momentum.
 
 **Acceptance Criteria:**
 
-**Given** the screen boundaries are defined
-**When** the character position exceeds screen limits
+**Given** the character is moving in the level
+**When** the character position exceeds the screen boundaries
 **Then** fall detection triggers immediately
-**And** the player respawns at the start point
+**And** the character instantly respawns at the designated spawn point
+**And** the game state resets for the new attempt
 
-### Story 3.5: Implement Respawn System
+### Story 2.3: Level Completion with Victory Feedback
 
-**As a** player,
-**I want** to instantly respawn at the start point after falling,
-**So that** I can quickly retry without losing progress.
-
-**Acceptance Criteria:**
-
-**Given** fall detection is triggered
-**When** respawn is initiated
-**Then** the character instantly appears at the spawn point
-**And** the game state is reset for the new attempt
-
-## Epic 4: Input System
-
-**Goal:** Implement cross-platform input handling for desktop and mobile
-
-### Story 4.1: Implement Keyboard Input Handler
-
-**As a** desktop player,
-**I want** to control the character using arrow keys and spacebar,
-**So that** I have precise control for platformer gameplay.
+As a player,
+I want to reach the castle endpoint and see clear visual feedback when I complete the level,
+So that I feel a sense of accomplishment and know I've succeeded.
 
 **Acceptance Criteria:**
 
-**Given** keyboard input is available
-**When** I press left/right arrow keys
-**Then** the character moves in the corresponding direction
-**And** spacebar triggers jump action with immediate feedback
+**Given** the character is navigating the level
+**When** the character touches the castle endpoint
+**Then** the level completion is detected immediately
+**And** clear visual feedback is provided for successful completion
+**And** I experience a satisfying victory moment
 
-### Story 4.2: Implement Touch Input Handler
+## Epic 3: Cross-Platform Play
 
-**As a** mobile player,
-**I want** to control the character using touch-based virtual controls,
-**So that** I can play the game on mobile devices.
+**Goal:** Users can play seamlessly on both desktop (keyboard) and mobile (touch) with consistent gameplay experience across all devices.
 
-**Acceptance Criteria:**
+### Story 3.1: Touch Controls for Mobile Play
 
-**Given** touch input is detected
-**When** I touch the virtual controls
-**Then** the character responds appropriately to touch gestures
-**And** touch controls are responsive and intuitive
-
-### Story 4.3: Implement Input Device Detection
-
-**As a** system,
-**I want** to detect whether the user is on desktop or mobile,
-**So that** the appropriate input controls are displayed.
+As a mobile player,
+I want to control the character using intuitive touch-based virtual controls,
+So that I can play the game effectively on my mobile device.
 
 **Acceptance Criteria:**
 
-**Given** the game starts or device changes
-**When** the input capabilities are checked
-**Then** the correct input method is automatically selected
-**And** UI adapts to the detected platform
+**Given** I'm playing on a mobile device with touch capabilities
+**When** I touch the virtual control buttons
+**Then** the character responds appropriately to my touch gestures
+**And** the touch controls are responsive and intuitive to use
+**And** the controls are properly sized and positioned for mobile screens
 
-### Story 4.4: Implement Visual Feedback System
+### Story 3.2: Adaptive Device Detection
 
-**As a** player,
-**I want** to see immediate visual feedback for my input actions,
-**So that** I know my controls are working properly.
-
-**Acceptance Criteria:**
-
-**Given** any input action is performed
-**When** the system processes the input
-**Then** visual feedback is provided immediately
-**And** the feedback confirms the action was successful
-
-## Epic 5: Game State Management
-
-**Goal:** Manage game phases and overall game flow
-
-### Story 5.1: Implement State Machine Framework
-
-**As a** developer,
-**I want** to create a state machine for game phase management,
-**So that** game flow is properly controlled and transitions are smooth.
+As a system,
+I want to detect whether the user is on desktop or mobile and automatically show the appropriate controls,
+So that players have the optimal control scheme for their device without manual configuration.
 
 **Acceptance Criteria:**
 
-**Given** the state machine is implemented
-**When** game events occur (start, complete, restart)
-**Then** state transitions happen correctly
-**And** each state has clear entry and exit conditions
+**Given** the game starts or the device capabilities change
+**When** the system checks for input capabilities
+**Then** the correct input method (keyboard or touch) is automatically selected
+**And** the appropriate control interface is displayed for the detected platform
+**And** the detection happens instantly without user intervention
 
-### Story 5.2: Implement Game Phase Management
+### Story 3.3: Responsive Cross-Platform Experience
 
-**As a** player,
-**I want** to experience distinct game phases (menu, playing, completed),
-**So that** the game flow is clear and intuitive.
-
-**Acceptance Criteria:**
-
-**Given** the game starts
-**When** I navigate through different game phases
-**Then** each phase has appropriate UI and behavior
-**And** transitions between phases are smooth
-
-### Story 5.3: Implement Player Position Tracking
-
-**As a** system,
-**I want** to track the player's position within the game world,
-**So that** game logic can respond to player location accurately.
+As a player,
+I want the game to adapt perfectly to my screen size and maintain consistent gameplay across all devices,
+So that I have the same quality gaming experience whether I'm on desktop or mobile.
 
 **Acceptance Criteria:**
 
-**Given** the player moves through the level
-**When** position tracking is active
-**Then** the current coordinates are always accurate
-**And** position data is available to all systems that need it
+**Given** I'm playing on any device with different screen sizes
+**When** the game loads or the viewport changes
+**Then** the game scales appropriately to fit my screen perfectly
+**And** the gameplay experience remains consistent across desktop and mobile platforms
+**And** all controls, physics, and visual elements work identically regardless of device
 
-### Story 5.4: Implement Instant Restart Functionality
+## Epic 4: Complete Game Experience
 
-**As a** player,
-**I want** to instantly restart the game at any time,
-**So that** I can quickly retry without waiting.
+**Goal:** Users experience a polished game with proper state management, visual feedback, and instant restart functionality for a professional gaming experience.
 
-**Acceptance Criteria:**
+### Story 4.1: Professional Game Flow with States
 
-**Given** restart is requested (via input or menu)
-**When** the restart action is processed
-**Then** the game immediately resets to initial state
-**And** the player respawns at the start point
-
-## Epic 6: Rendering System
-
-**Goal:** Create visual output using polygon graphics with responsive design
-
-### Story 6.1: Implement Polygon Rendering System
-
-**As a** developer,
-**I want** to render game objects using simple polygon graphics,
-**So that** the game has a clean, minimalist visual style without external assets.
+As a player,
+I want to experience distinct game phases with smooth transitions between menu, playing, and completed states,
+So that I have a polished, professional game flow that guides me through the experience.
 
 **Acceptance Criteria:**
 
-**Given** rendering system is implemented
-**When** game objects need to be displayed
-**Then** they are rendered as simple polygons
-**And** the visual style is consistent across all game objects
+**Given** the game is running
+**When** I navigate through different game phases (start, playing, completed)
+**Then** each phase has appropriate visual and behavioral elements
+**And** transitions between phases are smooth and seamless
+**And** the game state management feels professional and intuitive
 
-### Story 6.2: Implement Responsive Design System
+### Story 4.2: Instant Restart Anytime
 
-**As a** player,
-**I want** the game to adapt to different screen sizes,
-**So that** I can play on both desktop and mobile devices.
-
-**Acceptance Criteria:**
-
-**Given** the game runs on different screen sizes
-**When** the viewport changes
-**Then** the game scales appropriately
-**And** gameplay experience remains consistent
-
-### Story 6.3: Implement Cross-Platform Consistency
-
-**As a** player,
-**I want** the game experience to be consistent across platforms,
-**So that** I get the same quality of gameplay regardless of device.
+As a player,
+I want to instantly restart the game at any time without waiting or complex menus,
+So that I can quickly retry and maintain momentum during gameplay.
 
 **Acceptance Criteria:**
 
-**Given** the game runs on desktop vs mobile
-**When** comparing gameplay experiences
-**Then** controls, physics, and visual output are consistent
-**And** performance targets are met on both platforms
+**Given** I'm playing the game or in any game phase
+**When** I request a restart via input or menu option
+**Then** the game immediately resets to the initial state
+**And** the player respawns at the starting point without delay
+**And** all game variables and states are properly reset
+
+### Story 4.3: Polished Visual Experience
+
+As a player,
+I want to see clean polygon graphics and smooth position tracking throughout the game,
+So that I have a visually polished experience with consistent performance.
+
+**Acceptance Criteria:**
+
+**Given** the game is running on any device
+**When** I'm playing and moving through the level
+**Then** all game objects are rendered as clean, simple polygon graphics
+**And** the player position is tracked accurately and smoothly at all times
+**And** the visual experience is consistent and performs well across all platforms
